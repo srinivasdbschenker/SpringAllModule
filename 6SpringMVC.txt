@@ -1,0 +1,223 @@
+Spring MVC:
+------------
+=> spring web mvc is spring own web framework s/w to develop mvc architecture based web application. it is given as alternate for struts , jsp and etc framework softwares.
+
+=> spring web mvc struts 1.x are having differencess
+
+struts 1.x vs spring web mvc:
+------------------------------
+-> Debugging of problem is difficult
+==> debugging of problem is easy
+-> only on Form bean properties depednecy injection is possible
+=> Dependency injection is possible in every java resource of spring mvc application
+
+->Allows only jsp in view layer
+=> allows jsp, velocity, fremarker and extra technologies in view layer
+
+-> the developed form validaton logic becomes specific to web application
+=> The developed form validation logic cna be used inside and outside the web applicaiton
+
+-> separate plugin are required for form validation
+=> no plugins are required
+-> java resources are struts API dependent
+=> java resources can be develped as pojo classes
+
+
+Termaonilogy matching b/w struts 1.x and spring web mvc:
+-----------------------------------------------------------
+struts 1.x:
+        1. action servlet
+         2. Request processor
+          3. formbean class
+           4. action class 
+           5. controller
+           6.ActionForward
+           7.struts config file (<anyfilename>.xml
+
+Spring MVC:
+----------------
+m-movel
+v--view
+c-controller
+
+Dispatcher serverlet
+Url handler
+command class
+command controller class
+results views
+spring web config file (logicalname of dispatcher servlet-servlet.xml)
+
+-> the url handler class helps Despatcher servlet to pass the trapped request to appropriate command controller class and commnad class. 
+         there are two no of url hadnler classes
+              1. Simple url handler mapping
+              2. Bean name url handler mapping
+=> in struts 1.x and 2.x applicaitons from page can be lanched on the browser windwo without having control of contrller servlet
+=> in spring web mvc applications the form page must be launched on the browser window with out having conroler of controler servlet
+
+-> in spring web mvc applications, the form page must be launched on browser window only under the conrol of contrller servlet . for this we make welcome page of web applications sending implecit request to conroller servlet and this controller sevelet called dispatcher servlet takes the request and lanuched the formapge on the browser window that is associated with the command conroller class.
+
+-> if command controller class get Httpreqest method "GET" based request from browser window then it launches the command controller class related form papage on the browser window.
+
+=> if same command controller classe ets "post" method based request then the commoand controller class process the request by executing the business logic
+
+=> the spring configuratin file contains following configuration
+     1. command controller class configuration
+     2. url handler classes configuration
+     3. view resolver configuaration
+     4. Form page view pages configuation etc
+NOte: view resolver decides the technology name using which the result pages of command controller class are developed based on that it adds appripriate extensinons
+
+MVCFirstWeb
+    |-----Src
+            |----com.nt.controller
+                          |----------WelcomeController.java
+    |------WebContent
+               |----wEB-INF
+                         |---pages
+                                |-- welcome.html
+                        |----dispatcher-servlet.xml----> conroller and view resolver configuration
+                        |----web.xml ----> dispatcher servelt configuaration 
+
+               |--it wisible to all the people
+
+view resolver:
+        --> this view resolver takes the logical view name given by controller class and resolves physical view name by adding prefixes , suffies and returns view interface implementaion class obejct back to dispatcher servlet having physical view name.
+--> Dispathcer servelt cals render() method on the given view implementaiton class object and this rendor() method passes the control to physical view resource
+
+--> every view resolver is  a class that implements org.springframework.web.servlet.ViewResolver interface class. spring has given built in view Resolver class in that internalResourceView REsolver is usefull to return view implementation class object having servlet , jsp program placed in WEB_INF folder of the web application spring MVC web app that launches home pages and process the request based on the hyperlink .
+
+
+
+1.http://localhost:8080/WVCFirstWeb/home.html 
+
+2.web.xml-->  <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+
+3.dispatcherServlet.xml--> <props>
+<prop key="/first.htm">wc</prop>
+</props>
+
+
+4.dispatcherServlet.xml--> <bean id="wc" class="com.nt.controller.WelcomeController"/>
+
+5. WelcomeController.java--> @Override
+	public ModelAndView handleRequest(HttpServletRequest req,HttpServletResponse res) throws Exception { (1)
+		// TODO Auto-generated method stub
+		
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("welcome","msg", "Welcome to Spring MVC2");
+		return mav; (2)
+	}
+
+7.dispatcherServlet.xml--> <bean id="vr" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<property name="prefix" value="WEB-INF/pages"/>
+<property name="suffix" value=".jsp"/> 
+</bean>
+
+
+8. WEB-INF/pages/welcome.jsp
+
+
+Viewresolver:
+---------------
+--> this view resolver takes the logical view name given by controller class and resolves physical view name by adding prefixes, suffiexes and returns view interface implementation class object back to dispatcher servlet having physical view name.
+--> Disptacher servlet calls render() method on given view implementaion class object and this rendor() method passes the control to physical view resource
+
+--> Every view resolver is class that implementaing org.springframework.web.servlet.ViewResolver interface class. spring has given mulitiple buil-in viesolver class in that internalResourceviewResolver is useful to return view implemenation class object having servlet , jsp programs placed in the WEB-INF folder of the web application (internal resocrce ) spring mvc web app thances home page and process the request based on hyperlink
+
+
+Note: 
+ => in spring mvc appicaiton only welcome pages will be placed outside the WEB-INF folder and remaining jsps are recommended to place inside WEB-INF folder for security reason . Welcome page executes automatically for every request given to web applicaiton and gives implicit request by using <jsp:forward? tag or response.sendREdirect()method to launch other pages that are there inside WEB-INF folder through controler / handler classes
+
+=> it is always recommended to develop our controller / handler class by extending from predefined XxxController classes that means it is not recommended to developer same class by implementing controller interface directly
+
+
+controller/handler:
+---------------------
+-> the java class that implements org.springframwork.servlet.mvc.Controller is called controller/handler . it is mainly useful to render logical view name and data that is required to display in view layer resource.
+-> placing b.logic/ request processin logic in controller class is not recommended proces . it is recommended to place such logics in servie classes and communicate with them from controller clss.
+-> spring api has supplied lot of buil int clsses implementing " controller interface
+ these clases are given to handle the request coming from pages , hyperlinks and from other form components
+
+
+                              controller
+                                  |
+                            AbstractController
+                                  |
+-------------------------------------------------------------------
+|                                 |                               |
+parameterizableController  BaseCommandController          MultiActionController
+                                 |
+                   ----------------------------------
+                   |                                |
+ AbstractCommandController                AbstractFormController
+                                                  |
+                                        -----------------------------
+                                        |                           |
+                             SimpleFormController               AbstractWizardFormController
+
+
+
+
+ParameterizableViewController:
+--------------------------
+-> In order to display webpage without processing request , then instead of taking separate user defined controller class we can configure this class by specifying the destination view name as "viewName" property value , this is useful to display webpage for hyperlink generated request without having any request processing logics
+
+-> Ex: clicking  "AboutUs" , "contactUs" hyperlinks , for multiple request of this kind we need to configure this class for multiple times
+
+
+   MVCSeconWEb
+         |
+         src
+           |------com.nt. controller
+                         |------------ViewHomeController.java
+                                      WishController.java
+       WebContent
+          |-index.jsp
+          |--WEB-INF
+                 |--pages
+                      |---AboutUs.jsp
+                          contactus
+                           home
+                            result
+                             welcome.jsp
+               |--web.xml
+                  dispatcher-servlet.xml
+
+------------------------------------------------------------------------------------------------
+
+
+  MVCEmpApp4AC
+        |-----src
+               |----com.nt.bo
+                            |---EmpBO.java
+               |----com.nt.controller
+                              |------ListEmpController.java
+               |----com.nt.dao
+                             |-----ListEmpDao.java
+               |----com.nt.dto
+                            |-------EmpDTO.java
+                |------com.nt.service
+                               |---ListEmpService.java
+
+       |---WebContent
+                |----WEB-INF
+                         |----pages
+                                |-----------home.jsp
+                                             listEmps.jsp
+                         |----applicationContext.xml
+                         |---dispatcher-servlet.xml
+                         |---persistence-beans.xml
+                         |---service-beans.xml
+                         |---web.xml
+                |----index.jsp
+
+
+         
+
+
+
+

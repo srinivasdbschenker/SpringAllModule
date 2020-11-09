@@ -1,0 +1,41 @@
+Wiring:
+------
+  => the process of configuring bean properties and performing dependency injection on bean properties are called "Wiring operation"
+      There are two type of wiring operation
+           1. explicit wiring
+           2. Autowiring
+
+=>if spring Bean Properites are configured explicitly in spirng config fle for dependency injection that is called "explicit wiring".
+  the dependency injection configuration that we have done so far comes under explicit wiring
++=> if the container is detecting dependent values to bean properties automatically without any configuration of properties than it is called "Autowiring".
+
+=> There are limitions with Autowiring
+    i. Stright/simple values can not be injected to bean properites through autowiring . Only bean references type can be injected throught autowiring .
+
+   ii. There is a possible of getting ambiguitty problem . if mutiple suitable depednent values are found for a bean property in autowiring.
+
+
+=> Spring allows to perform autowiring in four modes
+      1. by type  2. by name  3. constructor  4. Autodetect
+
+=> to enable autowiring on spring bean we need to use autowir attribute of  <bean> tag
+
+byType: this performs setter injection on bean properties . in this mode of autowiring the data type of bean property must match with the dependent or injectable bean object data type . here names need not to match.
+
+byName : This performs setter injection on bean properties . this name of bean property and the bean id of dependent bean class object must match for byName mode of autowiring. 
+  
+Autodetect: 
+             if chooses constructor of byType mode of autowiring by scanning the details of spring bean class . if zero arg constructor is found in spring bean class, byType mode of autowiring takes place.
+
+   if appropriate and only parameterised constructor are avaialble constructors mode of autowiring takes palces
+
+==> if autowiring and explicit wiring is performed same setter injection on single bean property having two different values then the explicit wiring values will be effected.
+
+=> if autowiring and explicit wiring is performing same costructor injection on a single bean property with differnt values then explicit wiring values will be effected. 
+
+=> if autowiring is performing setter injection and explicit wiring performing constructor injection on same bean property with different values then the autowiring values will be effected. 
+
+=> if autowiring is performing constructor injection and explicit wiring is performing setter injection on asingle bean property with different values then the explicit wiring valeus wil be effected. 
+
+
+   

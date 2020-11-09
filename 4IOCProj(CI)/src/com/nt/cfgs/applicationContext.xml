@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="a1" class="com.nt.beans.Address">
+<constructor-arg value="Hyderabad"></constructor-arg>
+<constructor-arg value="TS"></constructor-arg>
+<constructor-arg value="India"></constructor-arg>
+</bean> 
+
+<bean id="e" class="com.nt.beans.Employee">
+<constructor-arg value="101" type="int"></constructor-arg>
+<constructor-arg value="raja"></constructor-arg>
+<constructor-arg>
+<ref bean="a1"/>
+</constructor-arg>
+</bean> 
+
+<bean id="q" class="com.nt.beans.Question">
+<constructor-arg value="111"></constructor-arg>
+<constructor-arg value="what is oops through java?"></constructor-arg>
+<constructor-arg>
+<list>
+<value>oops are object oriented programing principles</value>
+<value>java is platform independent language</value>
+<value>java is dynamic and robust</value>
+<value>java can used in Micros application , stand alone, web/j2ee appliction</value>
+
+</list>
+</constructor-arg>
+
+</bean>
+
+<bean id="q1" class="com.nt.beans.Question">
+<constructor-arg value="111"></constructor-arg>
+<constructor-arg value="what is oops through java?"></constructor-arg>
+<constructor-arg>
+<list>
+<ref bean="ans1"/>
+<ref bean="ans2"/>
+</list>
+</constructor-arg>
+
+</bean>
+
+<bean id="ans1" class="com.nt.beans.Answer">
+<constructor-arg value="1"></constructor-arg>
+<constructor-arg value="java is a programing language"></constructor-arg>
+<constructor-arg value="raja"></constructor-arg>
+</bean>
+
+<bean id="ans2" class="com.nt.beans.Answer">
+<constructor-arg value="2"></constructor-arg>
+<constructor-arg value="java is a Dynamic and robust"></constructor-arg>
+<constructor-arg value="rani"></constructor-arg>
+</bean>
+   
+<bean id="q2" class="com.nt.beans.Question">
+<constructor-arg value="111"></constructor-arg>
+<constructor-arg value="what is oops through java?"></constructor-arg>
+<constructor-arg>
+<map>
+<entry key="java is programming language" value="sandeep"></entry>
+<entry key="java is palatorm independent language" value="atul"></entry>
+<entry key=" java is robust and dynamic" value="subbarao"></entry>
+<entry key="java is distributed " value="seetharamaigh"></entry>
+
+</map>
+</constructor-arg>
+
+</bean>
+   
+   
+</beans>

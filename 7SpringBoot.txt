@@ -1,0 +1,18 @@
+Introduction Spring Boot:
+--------------------------
+The spring team decided they wanted to provide developers with some utilities which relatively automate the configuaration procedures and speeds up the process of building and deploying spring applicaitn so they invented spring boot
+
+
+spring boot is a utility project which aims to make it easy to build spring based production ready applications and services with minimum fuss. it provides the shortest way to get a spring web application up and running wiht the smallest line of code/configuration out-of-the-bos.
+
+Spring boot features:
+--------------------
+
+  there are a bunch of features specific to spring boot but there of dependency management, auto--configuration, and embeded servlet containers ..etc
+
+
+spring boot requirements:
+  java 8+
+  springframework 5.0.1.realease or above
+  servlet 3.0+
+

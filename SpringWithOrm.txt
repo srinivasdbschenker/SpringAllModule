@@ -1,0 +1,114 @@
+Spring with Orm Frameworks:
+---------------------------
+
+Spring provides API to easily integrate spring with ORM frameworks such as Hiberanate, JPA(java persistance API) , JDO (Java Data Objects), Oracle Toplink and ibatis.
+
+Advantages of ORM framework wiht spring :
+------------------------------------
+
+There are a lot of advantage of Sprin framework in repsect to ORM Framework .there are 
+-> Less coding is requried: By the help of spring framework , we do not to write extra codes before and after the actual database logic such as getting the connection , starting transaction, commiting transaction, closing connection etc.
+
+Easy to test:
+---------------
+     Spring's IOC apprack makes it easy to test the application
+
+Better eception handling:
+---------------------
+       spring framework provides its own api for exception handling with orm framework.
+
+integrated transaction management:
+--------------------------------
+       By the help of spring framework we can wrap our mapping code with an explicit template wrapper class or AOP style method interceptor.
+
+Hibernate without spring:
+-----------------------
+
+ //creation configuaration
+ Configuraration cfg=new Configuratation();
+  cfg.configure("hibeanate.cfg.xml");
+
+//creation seession factory object
+
+   SessionFactory factory=cfg.buildSessionFactory();
+
+//creation session object
+Session session=factory.openSession();
+
+Employee e1=new Employee(111, "raja", 40000);
+
+session.persist(e1);persisting object
+t.commit();//transaction is commited
+
+session.close();
+
+Methods of Hibernate Template class:
+-------------------------------------------
+
+void persist(Object entity) --> persists the given object
+
+Serializable save(Object entity)--> perists th given object and returns id
+
+void saveOrUpdate(Object entity)--> perists or updates the given object . if id is found . it updates the record otherwise save the record.
+
+void update(Object entity)--> updates the given object
+
+void delete(Object entity)--> deletes the given object on the basis of id.
+
+Object get(Class entityClass, Serilizable id)--> returns the persistant object on the basis of given id.
+
+
+Object load(class entityClass, Serilazable id)--> returns the persistant object on the basis of given id.
+
+List loadAll(class entityClass) --> returns the all the persistant objects.
+
+steps:
+------
+1. create table in the database ---optional
+2.create applicationContext.xml file --> contains information of Datasource , SessionFactory etc.
+3. create Employee.java file --> is the persistent class
+4. crate employee.hbm.xml file --> it is mapping file
+
+5. creating EmployeeDao.java file --> it is the dao clas that uses hibernateTemplate
+6. create insertTest.java file--> it calls methods of EmployeeDao class.
+
+SpringHiberanteInteragation
+                |-----------com.nt.bo
+                                |----Employee.java
+                            com.nt.dao
+                                     |-- EmployeeDao.java
+                             com.nt.test--- InsertTest.java
+                             com.nt.cfgs--applicationContext.xml
+                                          employee.hbm.xml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+

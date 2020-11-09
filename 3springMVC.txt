@@ -1,0 +1,444 @@
+MVC:
+---
+ m--> model -> busingess logic+ persisitance logic-> java beans/ ejb comp/spring with hiberante 
+ v--> view --> presentaion logic-> html/ jsp/velocity/freemarker/ theamleaf/ angual 2.x/ ractjs ...
+ c--> controller--> intigration logic/ connectivity logic--> servlet /servlet filter
+
+=> in s/w companies mvc-2 architecture becomes industries defacto standard to develop large scale s/w products.
+
+
+ => the main logic of the application that generates results based on inputs values is called business logic
+==> the logic that is there to interat with DB s/w and to manipualte DB tabbles data is called persistannce logic 
+     ex: jdbc code , hibernate code
+=> the logic that performs connectivity b/w view layer resources and model layer resources is called integration logic.
+
+Difference types of comibnation in  project developement based on MVC
+----------------------------------------------------------------------
+
+JSP ---------------> servlet -----------> java Bean --------> DB S/w
+view                 controller          model    
+
+
+   jsp---------------> servlet-------> java class/ java Bean---> DAO Class ------------->DB s/w
+                                       ------model----------
+  view               controller         business logic           persistnace logic   
+
+
+DAO---> Data Access Object
+
+=> The java class or application in the project that separates persistance logic from other logics of the applicaiton for flexibility is called DAO (Data Access Object)
+
+                         -----------model --------------
+ jsp  ------> servlet--> ejb session  --> ejb entity bean  ---> DB s/w
+                         --------------------------------
+ view          controller   business logic                    
+
+
+                           --------------model----------
+  jsp ---> servlet ---> ejb session Bean -----> DAO Class -----------> DB s/w
+  view     controller      ----------businesslogic------
+
+
+struts applicaiton ----------> Ejb session Bean ----> DAO Class ------------>DB s/w
+ view   controller                   B.logic            persistance logic
+
+
+ struts application --------->Ejb session Bean --------> Hibernate ----------> DB s/w
+ view   controller            B.logic                persistance logic
+
+                               B.logic                 persistance logic
+struts applicatin ---------> spring jee APP ---------> hibernate --------------> DB s/w
+ view controller            -----------model-----------------
+
+spring mvc applicaiton----> spring jee app--> hibernate -------> DB s/w
+ view controller             B logic           persistance logic     
+
+
+=> Eventhough spring can be used to develop all the logics of all the layer in mvc architecture project as of now industry is using spring s/w only to develop Business logic of model layer
+
+=> the model layer has only business logic is called service layer.
+
+
+
+project architecture:
+-------------------
+
+
+                       view layer(html ,jsp, ....)
+                   
+                         controller  layer ( servlets / servlet fileter)
+
+                       service layer ( business layer/ Ejb session Bean/ java Bean/ java class/ web service / spring / ..)
+
+                       persistance layer( jdbc / hibernate / ibaties / top link/ ojb/ ....)
+
+                       Data layer ( DB s/w  / files / ERP or CRM s/w)
+
+
+
+  some other possible technologics of to develop various loigcs of mvc architecute based applicaiton s
+
+https://mvnrepository.com/artifact/org.springframework/spring-core
+
+https://docs.spring.io/spring/docs/current/javadoc-api/
+   
+
+https://repo.spring.io/release/org/springframework/spring/3.2.5.RELEASE/
+============================================================
+
+Instatallation of spring 2.x s/w and above:
+--------------------------------------------
+=> to install spring 2.x s/w extract spring-framework-2.x wiht dependencies.zip file to a folder
+
+=> spirng-home\changelog.txt file contains differnece between various versions of spring s/w
+
+=> spring-home\dist\spirng.jar file represents the whole spirng API and it is having one dpendent jar file that is commons-logging.jar
+
+=> if classes and interfaces of one jar file uses classes and interfaces of other jar files then the other jar files are called dependent jar files to that one jar file
+
+-> when stand alone java applicaiton  uses spring api then the spring api related main and dependent jar files must be added to the classpaht (spring.jar, common-logging.jar).
+
+=> if java web application uses spring API in its web resource programs, then the spring API related main jar file (spring jar) should be added in the class path and the spring api related main and dependent jar file (spirng.jar , commons-logging.jar) should be added in the WEB-INF\lib folder of the web applicaiton .
+
+-> other than j2sdk api are called 3rd party apis ( not iven by programmer , not givn by sun microsystems). spring api is third party api , because it is coming from a third party organization callded interface 21. 
+
+=> when java stand alone application uses third party api then the third party api related main and dependent jar files must be added in the class path.
+
+=========================================
+
+=> spring supports POJ/POJI model programming 
+
+=> pojo--> plain old java class,  POJI--> plain old java interface
+
+->  if you are developing a java class as reosurce of certain s/w technology apllication and that class is not extending from predefiend class, not implementnting predefiend interface of that tecnology api then that class is called as "POJO".
+
+           public class Test{
+
+             --
+               }
+            Test is pojo class
+
+     public class Test extends Demo
+     {
+
+       ---
+     }
+
+  "Demo " is user defined class , "Test " is also pojo
+
+
+   public class Test implements java.io.serializable {
+
+      ---
+  }
+
+ Test is pojo class because java.io.serializable is basic interfaceof java api
+
+
+   public class Test extends javax.servelt.GenericServlet
+   {
+ ----------
+   }
+ Test is not pojo class 
+ Test is servlet API dependent class
+
+
+public class Test implemtns xyz
+{
+---
+ }
+
+xyz is user defined interface
+ Test is pojo class
+
+
+public class Tet implements javax.servelt.Servelt{
+
+
+--
+
+}
+
+"Test " is servlet api dependent 
+"Test" is not a pojo class
+
+
+==> when interface is taken as rsource of ceratin technology based java application if that interface is not extending from predefined interface of that technology API then it is called POJI (Plain Old java interface)
+
+
+public interface xyz{
+
+----
+
+}
+
+"xyz" is POJI
+
+public interface xyz extends abc{
+
+---
+}
+
+"xyz" is POJI 
+"abc" is user defined interface
+
+public interface xyz extends javax.servelt.Servlet{
+
+--------
+
+}
+
+"xyz " is not POJI
+"xyz" is servlet API dependent
+
+
+
+=>The resouces of spring application can be taken as pojo classes poji's . this makes spring application as light weight applicaiton. Another reason to call spring application as light weight applicaitons is the light wieght containers supplied by spring s/w.
+
+=> struts 2.x , EJB3.x , spring 2.x , Hibernate 3.x and other latest technologies are designed to support pojo / poji model programming
+
+=> Servlets 2.x, EJB 2.x , struts 1.x , jsp 1.x and 2.x and other older versions does not support POJO/POJI model programming
+
+
+
+Features of spring s/w:
+---------------------
+->1. supports POJO/POJI  model programming
+
+->2. Generates common logics of application dynacmically and improves application development productivity
+
+->3. can be used as independnet s/w or can be used along with other java/j2ee and java framework s/ws in applicaiton development.
+
+->4. can be used as independent s/w or can be used along with other java/j2ee and java framework s/ws in application development.
+
+->5. gives built in middleware services like connection pooling , transaction management, logging etc.
+
+->6. allows to work with third party supplied webservices / applicaiton server supllied middleware services
+
+->7.supports nested transcations , Distributed transcations.
+
+Note: The proces of combining realted operations into single unit and executing them by applying  "Do everything or nothing" principle is called Transaction management. 
+
+  Hiberante , EJB does not support nested transactions 
+  Hiberante does not support distributed transactions
+
+   Nested Transactions: A transaction exist in another transaction 
+   Distributed transaction: if more than one type of DB s/ws or databases are involeved in one transaction is called Distributed Transaction
+
+   ex: Transfer money from one bank to another bank.
+
+8. spring AOP is given as new methodology of configuring , user defined and predefiend middleware services on spring application.
+
+9. spring applications are light weight applications
+
+10. allows to perform unit testing on spring application by using spring environment.
+ 
+    note: if programmer performing testing on his own code that is called unit testing . if colleque programmer performs unit testing on another programmers code then it is called peer testing.
+
+11. supports annotations based programming as alternte for xml configurations.
+
+12. gives spring mvc as separte webframework s/w to ddevelop mvc2 architecture based web application
+
+13. easy to learn and easy to apply
+
+14. allows to devleop jdbc sytle persistance logic and also to develop O-R mapping persistance logic
+       note : JDBC persistance logic is sql queries based persistance logic so it is DB dependent
+              O-R mapping persistance logic is objects based persistance logic and it is DB s/w independent persistance logic
+
+ 
+
+================================================================================
+
+spring s/w supplies two built in containers:
+----------------------------------------
+      1. Bean factory ( in spring core module)
+      2. aplication context container (in spirng jee module advanced container)
+
+ Activating Beanfactory container is nothing but creating an object for a class that implemnts
+
+  org.springframework.beans.factory.BeanFactory interface
+
+ex: XmlBeanFactory factory=new XmlBeanFactory(obj);
+
+ XmlBeanFactory--> implemanation class of BeanFactory interface available in org.springframework.beans.factory.xml package
+
+factory-> object representing the activated BeanFactory contianers
+obj--> object representing spring configuration file
+
+
+=> By creating objects for the classes that are representing spring container , we can activate spring containers anywhere (inside the server or outside the server)
+
+=> To activate spring container basic j2sdk s/w is base s/w when spring container is activated from server side programms like servlet then also the spring container just uses j2sdk s/w of web server or application server as base to activate spring container and other facilites of server will not be used.
+
+========================================
+
+spring Core module:
+---------------
+
+1. gives BeanFactory container
+
+2. gives support for dependency injection
+
+3. base module for other spring module
+
+4. Allows to develop  local logics and stand alone applications
+
+5. can not be used to develop web application , distributed application and etc.
+
+6. logics of spring core module applicationns can be accessed only from local clients and can not be accessed from remote client
+
+7. we can see multiple jvms are running parallelly or simultaneously in the single computer in the fallowing situations
+   i. if same application is executed for multiple times from multiple command prompts are opended simultaneously or parallerly
+   
+   ii.if multiple applications are executed parallely or simulteneously from multiple command prompts or a computer.
+
+    iii. if mulitple web servers or applications servers are started or parallelly or simultaneously in a computers when multiple browsers windows are opend           parallely or simultaneously
+
+8. if application and its client resides and execute from same JVM that client is called local client
+
+9. if application and its client resides and executes from two different JVMs of same computer or two different compters then that client is called remote    client fo applicaiton .
+
+10. if an application allows only local clients to access applicaation loic then that application is called local application such logic is called local     logic
+
+11. if application allows both local and remote clients to access application logic and provides location transparency for clients then that application is called distribted application and such logic is called distributed logic
+
+ 12. location transprancy: mans if server applicaiton location is changed that will be recognized by client application dynamically without modifying code in client applications
+
+13. spring core module applicaitons are local applications . so they allow only local clients. refer 3.springcoremodule.png
+
+
+
+14. spring jee module can develop distributed applicaitons so that these applications can have with local and remote client. refer 4.spring jee.png
+
+
+========================
+=> the java class on which spring container can perform intstantiation dependency injection and other life cycle operations is called spring Bean class
+
+=> any predefined or user defiend or 3rd party supplied concrete java can be configured as spring bean for spring application
+=> spring bean need not be a java bean but java bean can also act as spring bean
+=> distributed applciaiton are client server applicaton having location transparency .RMI EJB spring jee module web srvices etc are the distributed technologies to develop these distributed applications
+
+Resources of spring core moduel applicaiton;
+---------------------------------------------
+
+1. spring interface ( it is poji) optional
+2. spring bean class ( it is pojo class)
+3. spring configuration file  (xml file)
+4. client applicaiton (standalone java application)
+
+spring interface: Declaration of business methods / utility methods 
+
+              spring interface is the common understanding document between spring client applicaiton developer , spring bean class developer containing declaration of business method 
+ but it is optional in core module applicatio . because the spring bean class and client applicaitn reside and execute from the same jvm in core module applicaiton
+
+spring bean class: 
+      -> implements spring interface ( optional)
+      -> contains Bean properties (member variables ) to hold values injected through dependency injection
+     -> contains user defiend methods as life cycle methods (optional)
+     -> Definitions of business mehtods having business loic that are declared in spring interface
+
+    -> other utility /helper methods (optional)
+
+
+spring configuration file:
+          any <filename>.xml can act as spring configuration file and this file name must be informed to spring container . there is no default name informed to spring container . there is no default name for spring configuration file expected by spring container when no file name is specified explicityly
+
+  -> contains spring Bean classes configuaration
+  -> contains spring properties configuration
+  -> contains dependency injections configuarations
+  Note : configuration of resources is nothing but passsing the details of resources to the underlaying container s/w.
+
+4. client application: 
+            -> must be local client application (must reside in the same JVM where spring bean class executes).
+          -> activates spring container by passing spring configuration file
+          -> makes spring container performing dependency injection on spring bean class proeperites
+          -> get access to spring bean class object from spring conntainer
+           -. calls business methods on spring bean class object
+
+        Note: 1. member variables declared in spring bean class are called bean properties 
+              2. a java bean class can act as spring bean class but it is not mandatory that every spring bean class must be a java bean 
+             3. in one spring applicaiton we can see multiple spring interfaces, spring bean classes but all the spring bean classes must be configured in                 spring configurd in spring configuration file 
+             4. creating managing spring bean class object calling life cycle methods calling mehtods related to dependcy injection in spring bean class                  will be taken care by spring container
+.
+
+=> there are 3 types of depedency injections supported by spring s/w
+   1. setter injection
+ 2 constructor injection
+  3. interface injection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

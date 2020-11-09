@@ -1,0 +1,38 @@
+Transaction Management:
+=========================
+The process of combining related operations into single unit and executing them by applying do everything or nothing principle called "Transaction Management"
+
+=> the withdraw amount from source account deposite amount from account must happen in Transaction environment
+=> in employee registartion employee details insertion into the DB and Insertion inot payroll DB most hppen in transactional environment
+
+  Transaction management allows to implement ACID Properties
+
+
+A--> Atomocity
+C-> Consistency
+I--> Isolation
+D-> Durability
+
+=> The process of combining indivisible operations into single unit is called Atomocity . Atomicity wor is derived from the term called Atom
+=> even thoguh  rules kept  on DB software like balance must not be negative are violated during the course of Transaction management, but if three is  a guarrenty that no rule will be vailated at the end of Transaction management, then we can say DB is    consistent.
+
+=> Applying locks on DB software and allowing one user or one applicaiton at a time to manipulate db data is called isolation.
+
+=> Bringing data back to normal state by log file, backup file eventhough DB is crashed indicates durablity of DB.
+
+
+
+TxMgmtProj1(Decl Txmgmt SpringAOP local , Flat
+    |
+    src
+     |---------com.nt.cfgs
+                       |----------applicationContext.cfgs
+     |--------com.nt.dao
+                     |---------BankDAO.java
+                                BankDAOImpl.java
+      |------com.nt.service
+                    |-----------BankService.java
+       |--------com.nt.test
+                         |----------ClientApp.java
+       
+

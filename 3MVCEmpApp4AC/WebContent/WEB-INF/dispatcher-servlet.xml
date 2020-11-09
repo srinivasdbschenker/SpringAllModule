@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+<!-- <context:component-scan base-package="org.springframework.samples.petclinic.web"/>
+ -->
+ 
+ <context:component-scan base-package="com.nt.controller"/>
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<property name="mappings">
+<props>
+<prop key="home.htm">pvc1</prop>
+<prop key="listEmps.htm">lec</prop> 
+</props>
+</property>
+</bean>
+<bean id="listEmpService" class="com.nt.service.ListEmpService">
+<property name="dao" ref="listEmpDAO"/>
+</bean>
+
+<bean id="lec" class="com.nt.controller.ListEmpController">
+<property name="service" ref="listEmpService"/>
+</bean>
+ 
+<bean id="pvc1" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+<property name="viewName" value="home"/>
+
+</bean>
+
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<property name="prefix" value="/WEB-INF/pages/"/>
+<property name="suffix" value=".jsp"/>
+</bean>
+
+</beans>

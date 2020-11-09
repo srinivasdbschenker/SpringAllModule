@@ -1,0 +1,87 @@
+Spring DAO:
+-----------
+The java class or application that separates persistance logic from other logics of apllication is called DAO.
+
+=> DAO is very useful to make persistance logic a flexible logic for modifications without effecting the other logics of the application.
+
+=> Spring DAO module is given to develop JDBC style persistance logic in any layer of the project by getting abstraction layer on JDBC programming . That means by using spring DAO module ,we can develop JDBC style persistance logic without directly using jdbc api and without performing common jdbc operations like establishing connection ,creating stement object, transaction mangement , closing jdbc object and etc operations.
+
+plain jdbc code:
+-----------
+1. load jdbc driver class
+2. establish the connection
+3.create statement object
+4. begining transaction
+5.perform persistance operations like insert , update, delete and select
+6. gather result and process the result
+7.commit/rollback the transaction
+8. cloese the connection.
+
+Spring DAO based pesistance logic code:
+------------------------------------
+1.get access to JdbcTemplate class object through dependency injection process.
+2. perform persistance operations like insert , update , delete and select
+3. gather results and process the results.
+
+
+if we use the jdbc tmeplate class given by spring dao module . it will take care of the common activaites of jdbc programming like stablishing connection, closing connection, transaction management and other common operatons, so programmer cna concentrate on the direct and required operations like sending , executing queries and performing the results.
+
+-> jdbc template class provides lot of methods to perform persistance operations on db s/w without using any of jdbc api
+-> query(-) for queryXxx(-) of jdbc template class are given to execute sql select queries.
+
+-> update(-) of jdbctemplate class is given to execute non select quries 
+-> batchUpdate(-) of jdbc template class is given to perform batch processing 
+
+Limitations iwth JDBC:
+------------------------
+1.the common jdbc operations/workflow and each application specific persistance logic should be taken care by perogrammer manually.
+2. result set object is not seriaclizable object . so we can not send that object over the network
+3. result set object is not serializable object so wen cannot send that object over the network.
+3. all jdbc exceptions are checked excetions .so programmer must cactch and handle them
+
+
+Featautes of spirng dao:
+-------------------
+1. allow to develop jdbc persitance logic wihtout using jdbc api
+2. the jdbc template class takes care of the common jdbc work flow operations. so the programmer can concentarte directly on his applicaiton specification peristance logic development.
+3The select query results can be store directly in collection framework data structure which are serialbizable objects by default
+
+4. sring DAO interanally uses jdbc code so catches all checked exceptions thrown by jdbc code and retrows them to spring applicatons as unchecked exceptions
+
+5. simplify the process of develping jdbc style persistance logic by providing abstraction layer on jdbc programming.
+
+     1DAOProj(jdbc template-Basic)
+                             |--com.nt.cfgs
+                                         |----applicationContext.xml
+                             |--com.nt.dao
+                                         |--DBOperationDAO.java
+                                            DBOperationDAOImpl.java
+                             |--com.nt.service
+                                          |----DBOperationsService.java
+                                               DBOperationsServiceImpl.java
+                             |--com.nt.test
+                                          |--ClientApp.java
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

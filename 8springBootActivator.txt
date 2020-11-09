@@ -1,0 +1,24 @@
+Key Features Offered by an Actuator:
+------------------------------------
+
+1.Health check: we can use a health endpoint to check the status of any running application
+
+2. Monitoring and Management over HTTP/JMX: Actuator support HTTP endpoint as well as java management Extensions (JMX) to provide a standard mechanism to monitor and manage applications
+
+    -> logger: it provides a features to view and update the logs level
+    -> metrics: spring boot actuator provides dependency management and ato configuration for micrometer an application metrics facade that supports                numerous monitoring systems
+   -> Auditing: Once spring security is in play, spring boot actuator has a flexible audit framework that publishes evens (by default "authenication       success" , and "access" and "access denied" exceptions). this feature can be very useful for reporting and for implementing a lock-out policy abased        on the authentication failures.
+   -> Http Tracing : HTTP Tracing can be enabled by providing a been of type HttpTraceRepository in your applications configuration. For conveninence,      spring Boot offers an InmemeoryHttpTraceRepository that stores traces for the last 100 request-response exchages.
+  --> Process Monitoring
+
+
+ <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+    <version>2.3.4.RELEASE</version>
+</dependency>
+
+
+
+

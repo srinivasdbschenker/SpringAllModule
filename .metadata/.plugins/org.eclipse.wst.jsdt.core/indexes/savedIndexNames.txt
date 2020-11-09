@@ -1,0 +1,13 @@
+INDEX VERSION 1.3+C:\Users\SRINIVRA\Downloads\CoreJavaNareshIt\Spring\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+183434039.index
+2818795888.index
+4237703051.index
+3717102619.index
+4263356757.index
+1883255459.index
+1252878764.index
+443435302.index
+649543540.index
+1828923133.index
+2457100635.index
+777471095.index

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id="tp1" class="com.nt.beans.TourPlan" primary="true">
+<property name="palces">
+<list>
+    <value>Goa</value>
+   <value>Ooty</value>
+   <value>Mumbai</value>
+   <value>Manglore</value>
+</list>
+</property>
+
+</bean>
+
+
+<bean id="tp2" class="com.nt.beans.TourPlan">
+<property name="palces">
+<list>
+<value>vizaq</value>
+<value>Araku</value>
+<value>AnathGiri</value>
+<value>Srisailam</value>
+</list>
+
+</property>
+
+</bean>
+
+<bean id="agent" class="com.nt.beans.TravelAgent" autowire="byName">
+ <!-- <property name="tp" ref="tp1"/> -->
+  <property name="nas" value="ST"/> 
+ 
+  
+  
+</bean>
+
+</beans>

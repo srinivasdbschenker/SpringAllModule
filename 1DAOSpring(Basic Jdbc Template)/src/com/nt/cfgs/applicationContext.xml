@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <!--  <bean id="bds" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                        
+  <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+  <property name="user" value="root"/>
+  <property name="password" value="root"/>
+  <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/dao"/>
+  <property name="maxPoolSize" value="30"/>
+  
+  </bean> 
+   --> 
+   
+    <bean id="bds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/dao"/>
+    <property name="username" value="root"/>
+    <property name="password" value="root"/>
+</bean>
+    
+  <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+  <property name="dataSource" ref="bds"/>  
+  </bean>
+  
+  <bean id="dbDao" class="com.nt.dao.DBOperationDAOImpl">
+  <property name="jt" ref="template"/>
+  </bean>
+  <bean id="dbService" class="com.nt.service.DBOperationsServiceImpl">
+  <property name="dao" ref="dbDao"/>
+  </bean>
+</beans>

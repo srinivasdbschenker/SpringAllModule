@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id="target" class="com.nt.service.IntrAmtCalculator"/>
+<bean id="logAdvice" class="com.nt.aspect.LogAroundAdvice"/>
+<bean id="pmAdvice" class="com.nt.aspect.PerformanceMonitoringAdvice"/>
+
+<bean id="cacheAdvice" class="com.nt.aspect.CacheAdvice"/>
+<bean id="pfb" class="org.springframework.aop.framework.ProxyFactoryBean">
+<property name="target" ref="target"/>
+<property name="interceptorNames">
+<list>
+<value>pmAdvice</value>
+<value>logAdvice</value>
+<value>cacheAdvice</value>
+</list>
+</property>
+<!-- when you are configuring multiple around advice on target class including cache advice it is  a recomanded to configured cache advice 
+    as the first advice in the list because when result is gathered from cache , there is no need of enabling performance nonitoring logging advice on target 
+     class.
+      -->
+</bean>
+           </beans>

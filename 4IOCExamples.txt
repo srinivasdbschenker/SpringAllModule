@@ -1,0 +1,84 @@
+setter Injection: if spring container uses setXxx() methods of spring Beann class to inject depednet values to bean properties then it is called "setterInjection" . In this process spring container uses zero argument constructor to create spring bean class object.
+
+constructor injection:
+=> if spring container uses parameterised constructor to assign dependent values to bean properties and also for creating spring bean class object then it is called "constructor injection"
+
+Interface Injection:
+
+  if spring container uses special interfaces implemented by spring bean class to inject dependent values to bean properties then it is called "interface injection".
+
+
+
+
+  IOCProj2(looselyCoupling)
+                 |--------com.nt.beans
+                                   |-------BlueDart.java
+                                           Courier.java
+                                           DTDC.java
+                                           FlipKart.java                 
+
+                 |--------com.nt.cfgs----applicationContext.xml
+
+
+                  |------com.nt.test ----LCTestApp.java
+
+
+  4IOCProj(CI)
+       |---------com.nt.beans
+                           |---Address.java
+                               Employee.java
+       |---------com.nt.cfgs
+                          |---------applicationContext.xml
+
+       |--------com.nt.test
+                        |---------Test.java
+
+=> we generally take our spring bean class as pojo class. but it is not mandatory every spring bean class should be taken as pojo class. but it is not every spring bean class should be taken as pojo class
+=> spring shupplied predefined classes , other api related predefined classes can also act as spring bean classes even though they are not pojo class.
+
+=> with respect to client application 
+             XmlBeanFactory factory=new XmlBeanFactory(res);
+           this statement activates BeanFActory spring container and this container reads and verifies entries available in spring config file.
+=> spring containers we saxParser (xml parser) to read , verify and manipulate xml entries avialable in spring config file.
+    
+=> when factory getBean("db").mehtod of client application executes the following operations will take place
+         1. get spring bean class name from spring Config file based on given method id "db".
+         2. spring containes loads DemoBean class from the memory by using Class.forName(-).
+         3.spring Container creates DemoBean class object with the suppot of zero argument constructor by using newInstance().
+         4. spring conainer performs setter injection on "msg" property based on "msg" configuration done in spring config file
+         5. getBean() method returns DemoBean class object by collecting it from spring container .programmer can refer this object either by using spring             interface variale or spring bean class refernce variable.
+
+=> when all properties of spring bean class are configured for setterInjection the spring container creates that spring bean class object by suing zero argumetn constructs . so progrmmer should make sure that zero argurment costructor is avaialble in spring bean class directly or indirectly .
+
+=> we  can activate spring container for any number of times in a single java application or j2ee application
+=> if spring container is activated in a java method at he end of that execution the spring container will  deactivated automatically.
+
+=> there are two ways to locate spring config file for beanFacotr spring container
+         1. By using FileSystemResource class // this checks for given config file in the specified path.
+         2.       //locate spring config file
+                 FileSystemResource res=new FileSystemREsource("applicationContext.xml");
+                     //activate BeanFActory spring Container
+                  XmlBeanFacotry factory=new XmlBeanFactory(res);
+          3.Takes spring Config File from the parent direcotry of current directory where the client application is execution 
+
+         4.by using ClassPathResource (org.springframework.core.io)
+              this class takes or locates spring config file from the direcotries are jar files added in the class path
+                  step 1: place spring config file in any folder of your choice
+                                c:\store--> Democfg.xml
+                   step 2: add c:\store  folder to classpath environment variable
+                           Mycommputer--> properties--> advanced -->>environment variables
+                      variable name: classpath
+                      variable value=c:\store
+                   step 3: write following code in the client applicaitont to activate spring container (BeanFactory)
+                      ClassPathResource res=new ClassPathResource("Democfg.xml);
+                      XmlBeanFactory factory=new XmlBeanFactory(res);
+
+ => classPathResource is useful to make one spring application using another spring application configuration file as spring config file of that spring applicaiton.
+=>Both FilesystemResource , ClassPathResource classes provides abstraction layer on java.io.File class.
+=> if spring bean property type is primitive data type or java.lang.String then use <value> tag in spring config file to specify dependent value to BeanProperty
+=> if spring bean property tpe is anothe bean class name (predefiend userdefined) then use <ref> to configure dependent value to bean property in spirng config file.
+
+=> predefined or 3rd party supplied java classes anc aslo be fingured as pring bean classes in spring config file and we can also fingure their properties for dependency injection.
+
+        
+

@@ -1,0 +1,175 @@
+spring framework have 1.x and 2.x 
+
+  spring 1.x --> seven modules -> 1. spring Aop
+                                  2. spring core module
+                                  3.spring  orm module
+                                  4. spring web module
+                                  5. spring web mvc module
+                                  6.spring dao module
+                                  7. spring context module
+
+  spring 2.x have six modules are there. because spring web, spring web mvc modules of spring 1.x s/w are combined into single modules called spring web module in spring 2.x s/w
+
+  spring 2.x--> 1. spring core
+                2. spring Dao
+               3. spring orm
+               4. spring jee
+              5. spring web
+            6. spring aop
+
+ => spring context module of spring 1.x s/w is given as spring jee module in spring 2.x s/w
+
+=> spring core module is given to support dependency injectin . This module is base module for other modules of spring 
+
+=> spring orm modules is given providing abstraction layer on multiple orm s/ws like hibernate , toplink etc to develop orm mapping persistnace logic
+
+=> spring jee modules is given providing abstracction layer on jee technologies like JMS , jca, ejb, java mail and etc. this module is use ful to develo business components , distributed applications and enterprise applicaiton etc
+
+=> spring web module is given for two operation
+  1. to make other modules based spring application communicatable from web framework based web applicaiton like struts , jsf, application ..etc
+  2. this module gives spring own web framework s/w whose name is spring mvc to develop mvc2 architecture based web applicaitons
+
+=> spring AOP module is no way related with oop programming . spring aop is the methodlogy to configure middleware services or additional services on spring applications to make them running smoothely and effectively in all situations
+
+  middleware services are like security , transaction management , caching , pooling, clustering and etc..
+
+
+spring defination:
+=================
+
+spring is an open source , light weight , loosely coupled ,aspect orineted , Dependency injection based framework s/w of java environment to develop all kinds of java/j2ee applications having good productivity. 
+
+=> open source: when you install spring s/w , we get source code of the s/w and spring is a free . these things we makes spring as open source s/w
+
+=> light weight: most of the spring applications can be executed with out using webservers and applicaiton servers . spring supplies built in container in the form of predefined java classes by creating objects for these classes . we can directly activate spring containers. while developing resources of the spring applications , we can develop them without using spring api . all these features makes spring as light weight s/w.
+
+=> servelt containers , EJB containers are heavy weight containers , because they will be activated only when other heavy weight s/ws like web servers and application servers are started. 
+
+=> container is a s/w or special application that can take care and manage the complete life cycle of a given resource that means containers takes care of all the operation realted to resource which are required for execution.
+
+=> a container is a acquirum for fish . 
+=> once resource is given to conatiner , from object creation to object destruction all the operations related for executing and managing resource will be taken care by container
+
+=> servlet, ejb container are heavy weight containers because they come as s/w where as spring supplied containers are light weight containers . becasue they come as pre defienied classes.
+
+==============================================================
+loosely coupled:
+--------------
+
+ we can develop spring application either by using all modules of spring or specific of modules of spring s/w . we can give spring modules along with other java technologies in application developement . this makes spring s/w as loosely coupled s/w.
+
+  Loosely coupled s/w means the degree of dependency is very less during utilization . sprinng allows to configure middle ware servcies on the application from outside the application without distrubing the logic of the applicaiton . this process process allowed while working wiht user defiend and pre defiend middleware services.
+
+
+Aspect oriented : spring aop is the new methodology of applying middleware services on spring applications. spring aspect is nothing but user derfined or predefined meddleware services.
+
+  Applications are called enterpriese aplicatons only when they are having complex , large scale business logic and when they are configured with middleware services like security , transaction management (Tx Management)
+ ex: Bankingg applications ,, online shoping website.
+
+
+what is the diffenrence between dependdency look up and dependency injection?
+
+  Dependencey lookup:
+ ------------------
+            if the resource of the application is explicitly spending time to search and get its dependent values from other resources of the applications , then it is caled dependency lookup.
+
+=> in dependency look up , resource perform pull operation on other resource to get dependent values.
+     ex: if the student gets his course material (dependent values ) only when he asks for the material from employee of institute , then it is called dependency lookup .
+
+=> the way java applicaiton gets jdbc data source object from registry s/w is called dependency lookup.
+
+=> Registy s/w cna store and manage object and object references for global visisbility.
+
+    ex: LDAP registy, RMI registry. COS regitstry etc.
+
+Advantages: 
+      1. REsource can get only required  dpendent values 
+       2. disadvatange : resource should spend time to search and get dependent values.
+
+ Dependency Injection:
+ ----------------------
+     if underlaying server software or framework s/w or container s/w or special resource of the application gathers dependent values and assign them resource dynamically them us process is called dependency injection.
+
+          in dependency injection , dependnet values will be pushed to resource dynamically by unserlying / server framework / contianer etc s/ws.
+
+ex: the way JVM / JRE executes constructers dynamically when object is created to assign certain values as intial or depenednent values to object is called dependency injection. 
+
+the way action servlet writes form dat to frombean class object when action srvlet traps and takes the request given by form page is called dependency injection . 
+
+  Advantage: 
+     resource need not spend time to get dependent values 
+    dis advantage: 
+          both necessary and unnecessary values will be injected 
+          if student get curse matereial immediately after registry of course then it is called dependency injection.
+   
+MVC
+ m
+ v
+ c
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

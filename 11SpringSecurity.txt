@@ -1,0 +1,71 @@
+Spring Security:
+---------------
+
+  To perform dependency injection on servletFilter comp its class must be maintained by IOC container as spring bean having configuration in spring bean configure file. Due to this it can not take request from client as filter is not configured as web component in web.xml file. To overcome this problem we configure special proxy fileter in web.xml file to take the request from client to pass the request to fileter comp that is there in IOC container as spring bean, The special filter is "org.springframework.web.filter.DelegatingfilterProxyfileter. But we need to match logical name (given in <filename> of Delgating Proxy filter with bean name of filter comp managed by IOC container.
+
+Security (Authentication + Autherization)
+=========================================
+
+=> checking the identity of the user is called authentication (Verifying username, password)
+
+=> Checking the access permission of the user to utilize the service is called authorization
+    Provide authorization / access permission not based on username, provide them based on roles
+
+=> Roles are like desingnation.
+    Checking the identity of user to use banking application is authentication.
+    checking access permission of a user based on his roles to the varius services is called authorization
+   
+   While implementing sucurity we need the services are 
+
+     a.) Authentication provider/ Authenticaitn info provider
+         
+         => it is the place where we can maintain set of username and password that are required for authentication . we can take
+                     FileSystem file (Text file, xml file etc)
+                       DB software
+                      LDAP server (light weight  Directory access protocol)
+                       LDAP server is dedicatedly given to maintain Username and password.
+
+         => The speciality of theis server of this server is once you forgot the password you  cannot get the password but you can reset the password . it is also to maintain username , password that required in single sign on operations ( login once use them for multiple apps)
+
+    Ex:  login to gmail and use in youtube.com, googledriver.com , google+.com gmail.com and etc.
+
+    b.) Authentication  Manager:
+   => it is separate component that is linked servletfilter to verify to given user, password  with username , password that are available in authentication provider , if valid allows the reuqest going to the actually requested resource , it not valid shows 401, 402, 403 errore pages.
+
+  This has to ignore authentication when request is given some resource like home page and has to enable authentication for other resources. 
+
+In NOn spring environment we can implement security in two ways
+---------------------------------------------------------------
+1.) programatic / custome security model
+
+       Her we need to write code  as Authentication manager that  takes the request , render dialog boxes asking username and password and talks to authentication provideer  for verfication and either allows the request to go to required resource or block the request by throwing 403 or 401 erore page doing this wor manually is very complex . so it is not recommended model
+
+2.) server Managed Declarative security model
+         Her authentication manager work , authentication provider will be taken care by server/ container based on the configuration done in web.xml to reduce burden  on the programmer but few limitaions are ther in theis approach
+  1. web.xml entries are not poratable accreoss the multiple servers
+  2. some web servers donot supports in this model
+  3. going to commercial applicaiton server only for security as authentication provider
+  4. some server do not support LDAP server as authincation provider
+
+=> to overcome this problem use spring security the earilier name is (spring acegi security)
+   1. it runs in all the server and works irrespecitve the support or not
+   2. supports all models of authentication providers
+   3. it is also delcarative security model
+   4. can be applied on normal web application and speing mvc web applicaiton and etc.
+
+ 
+NOte: we can configure spring security definintions in sprin bean configuariton file having security namespace, based on this configuration internally one servletfileter will be generated as spring bean in IOC container having bean name.
+
+  "Springsecurity fileter chain"  so to take request from client and to pass to request the above generated fileter we need to configure "Delegating filter proxy" in web.xml  with logical name "spring seucrity Fileter chain " 
+
+
+SpringSecurityApp
+     |-----------java Resources
+                       |----------Webcontent
+                       |-----------WEB-INF
+                                    |-------pages
+                                              |------*.jsp
+                                    |---------dispatcherServlet.xml
+                                    |----------web.xml
+
+      

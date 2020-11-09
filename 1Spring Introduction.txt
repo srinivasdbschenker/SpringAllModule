@@ -1,0 +1,61 @@
+spring framework:
+--------------
+
+=> framework s/w is a special s/w that is capable of developing apllicaton based on certain architecutral having the ability to generate common logics of the application dynamically based on other logics supplied by programmer
+
+=> frame work wil be given based on core technologis and framework s/w provides an abstraction layer on core technologies . so that without having strong knowledge on core technologies we can develop core tecnology based application by uisng framweork s/w
+
+=> if you develop applications directly by using core technogologies the common logics of applications and your application specifific logic should be develope by you manually this kills productivity.
+
+
+=> struts is a framework s/w to develop mvc-2 architecute based web application having the ability to generate integration logic of controller layer dynamically based on the logics given in other layers by programmers
+
+-> spring is framework s/w which can be develop all kind of java/j2ee application in the fremwork style based on dependency injection priniciple
+
+-> servelts and jsp are the core technologies to develop web applications
+  ex: struts,jsf, webwork, xwork, spring mvc, and web framework to develop web appliations
+      hiberante, top link, ibatis, jdo ,ojb, .etc orm framweork s/w
+
+-> jdbc is the core technologies to develop persistance logic
+-> spring framework is developed based on various jse,jee,module based technologies by providing abstraction layer on them. so programmers can use spring s/w to develop all kinds of java/j2ee applications in framework style.
+
+-> spring framework s/w not only provides abstraction layer on java/jee core technologies but also provides abstraction layer on some other framwork s/w like hiberante , toplink etc
+
+
+plain jdbc code:
+--------------'
+1. based jdbc driver class and register with drivermanger serive (common operation)
+2. establish the connection with db s/w
+3. create statments object (common operation)
+4. send and execute sql in db s/w 
+          ( appplicaiton specific ,requriment based)
+
+5. get and process the results 
+         ( applications specific , requirement based)
+
+ 6. close connection with db s/w
+
+
+spring based application:
+----------------------
+
+1. get access to jdbc Template that uses jdbc code internally by providing abstraction layer on jdbc technology
+2. send and execute sql in db s/w
+   (aplication specific logic , requiement based)
+
+3. get and proccess the results
+     ( applicaiton speicific , requirement based)
+
+
+NOte: to observe the spring application code , it is just making the programmer to just develop application specific logic because the jdbc template of spring s/w genearates the remaining common logics dynmaically . this feature makes framework s/w giving good productivity when compare to work with core technologies directly.
+
+
+-> doing more work in less time having good accuracy is called as good productivity.
+
+
+
+
+=> spring framework is open source
+
+     object--> classname objectname=new classname();
+      new, factorypatter, new instance, cloneable, deserilizable
